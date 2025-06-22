@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="pt, tet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAP Solutions - Materiais PAP Prontu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2E5A8A;
+            --secondary: #4CAF50;
+            --light: #F5F5F5;
+            --dark: #333;
+            --white: #FFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(46, 90, 138, 0.8), rgba(46, 90, 138, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #3e8e41;
+            transform: translateY(-3px);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .product-body {
+            padding: 30px;
+        }
+        
+        .product-body ul {
+            list-style-position: inside;
+            margin-bottom: 20px;
+        }
+        
+        .product-body li {
+            margin-bottom: 10px;
+        }
+        
+        .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        .title-list {
+            margin: 20px 0;
+        }
+        
+        .title-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .title-item:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .title-item.selected {
+            background-color: #e1f5fe;
+            border-left: 3px solid var(--primary);
+        }
+        
+        /* Delivery Date Options */
+        .delivery-date {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+        .date-options {
+            margin-top: 10px;
+        }
+        
+        .date-option {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .date-option:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .date-option input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                background-color: var(--white);
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                transition: left 0.3s;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/67075468992" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">PAP<span>Solutions</span></a>
+            
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#products">Produtus</a></li>
+                <li><a href="#materials">Materiais</a></li>
+                <li><a href="#about">Kona-ba Ami</a></li>
+                <li><a href="#contact">Kontaktu</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>MATERIAIS PAP PRONTU!</h1>
+            <p>Judú no Relatóriu Completu ba estudante Colegio Maria Regina Guterres no eskola teknikál sira. Fácil, Rápido, Profisionál!</p>
+            <a href="#products" class="btn">Haree Materiais Agora</a>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Servisu Ami nian</h2>
+            </div>
+<button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Klik no haree Perguntas Pesquiza</button>
+            <!-- modal inicio  -->
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fs-5" id="exampleModalToggleLabel">Judul Neebe aprova ona bele haree tuir perguntas sira tuir mai nee </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card-header bg-info p-3">
+            Judul : Estratejia Gestaun Finanseira iha Instituisaun Klibur Domin
+
+        </div>
+<ul>
+    <li>1.	Instituisaun iha estratejia konkrétu atu kontrola no hala’o gestaun finanseira ka lae?</li>
+    <li>2.	Ema sira iha kapasidade profesionaál atu jere finansas iha instituisaun?</li>
+    <li>3.	Instituisaun iha prosedura klaru atu jere no kontrola finansas?</li>
+    <li> 4.	Iha relatoriu finanseira ne’ebé hatudu klaru kona ba Osan?</li>
+    <li>5.	Instituisaun iha sistemu informasaun ne’ebé efisiente atu jere finansas?</li>
+</ul>
+
+ <div class="card-header bg-info p-3">
+            Judul : Estratejia Gestaun Finanseira iha Instituisaun Klibur Domin
+
+        </div>
+<ul>
+    <li>1.	Instituisaun iha estratejia konkrétu atu kontrola no hala’o gestaun finanseira ka lae?</li>
+    <li>2.	Ema sira iha kapasidade profesionaál atu jere finansas iha instituisaun?</li>
+    <li>3.	Instituisaun iha prosedura klaru atu jere no kontrola finansas?</li>
+    <li> 4.	Iha relatoriu finanseira ne’ebé hatudu klaru kona ba Osan?</li>
+    <li>5.	Instituisaun iha sistemu informasaun ne’ebé efisiente atu jere finansas?</li>
+</ul>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Hide this modal and show the first with the button below.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+<!-- modal remata  -->
+        <hr>
+
+        <hr>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Judú PAP Prontu</h3>
+                    <p>Hili husi koleksaun judú ami nian ba área Kontablidade, Quantitativo no Qualitativo.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Relatóriu Kompletu</h3>
+                    <p>Relatóriu prontu ho estrutura profisionál, gráfiku, tabela no analiza.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Transaksi Fácil</h3>
+                    <p>Ordens via WhatsApp (+670 7546 8992) ho pagamentu konveniente.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Ajuda Estudante</h3>
+                    <p>Deskontu ba estudante Colegio Maria Regina Guterres.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Produtus Ami nian</h2>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>Judú + Relatorio + Power Point</h3>
+                    </div>
+                    <div class="product-body">
+                        <ul>
+                            <li>JUDUL NE'EBE APROVA ONA </li>
+                            <li>Área Kontablidade</li>
+                            <li>Modelu Quantitativo/Qualitativo</li>
+                            <li>PDF ho estrutura básika</li>
+                        </ul>
+                        <div class="price">$5</div>
+                        <button class="btn select-title btn btn-primary" data-price="15" data-type="Judú de'it">Order Agora</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>Judú + Relatóriu</h3>
+                    </div>
+                    <div class="product-body">
+                        <ul>
+                            <li>Judú ho relatóriu kompletu</li>
+                            <li>20-30 páginas prontu</li>
+                            <li>Gráfiku, tabela, analiza</li>
+                            <li>Formatu editável (DOC/PDF)</li>
+                        </ul>
+                        <div class="price">$5</div>
+                        <button class="btn select-title" data-price="75" data-type="Judú + Relatóriu">Order Agora</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>Personalizadu</h3>
+                    </div>
+                    <div class="product-body">
+                        <ul>
+                            <li>Judú ne'ebé ita hili</li>
+                            <li>Relatóriu personalizadu</li>
+                            <li>Pesquisa adicional</li>
+                            <li>Revisaun 2x</li>
+                        </ul>
+                        <div class="price">$5</div>
+                        <button class="btn select-title" data-price="120" data-type="Personalizadu">Order Agora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Testemunhu sira</h2>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Husi PAP Solutions, ha'u hetan judú ne'ebé ajuda ha'u pasa exame! Relatóriu kompletu ho analiza ne'ebé profisionál."</p>
+                    <p class="testimonial-author">— Maria, Estudante Colegio MRG</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Prosesu fácil liu! Hau mensa via WhatsApp, pagamentu ho MBWay, no simu relatóriu iha loron 2 de'it."</p>
+                    <p class="testimonial-author">— João, Estudante ETB</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Ami nia grupu uza servisu ne'e. Judú sira ne'ebé relevante no ajuda ami komprende metodolojia."</p>
+                    <p class="testimonial-author">— Grupo Estudante 5, Eskola Teknikál Dili</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>PAP Solutions</h3>
+                    <p>Ajuda estudante sira prepara materiais PAP ho kwalidade no fasilidade.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/67075468992"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Link sira</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#products">Produtus</a></li>
+                        <li><a href="#materials">Materiais</a></li>
+                        <li><a href="#about">Kona-ba Ami</a></li>
+                        <li><a href="#contact">Kontaktu</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kontaktu ami</h3>
+                    <ul>
+                        <li><i class="fas fa-phone-alt"></i> +670 7546 8992</li>
+                        <li><i class="fas fa-envelope"></i> papexpert@example.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Dili, Timor-Leste</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 PAP Solutions. Direitu hotu-hotu preservadu.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Title Selection Modal -->
+    <div class="modal" id="titleModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Hili Judú <span id="modalType"></span></h3>
+            <p>Total: $<span id="modalPrice">0</span></p>
+            
+
+
+
+
+
+
+            <div class="title-list">
+                <h4>Judú sira iha área Kontablidade: </h4>
+</h4>
+                <div class="title-item" data-title="Analiza Finanseiru Empresa X">Analiza Finanseiru Empresa X</div>
+                <div class="title-item" data-title="Impactu Impostu iha PME Timor-Leste">Impactu Impostu iha PME Timor-Leste</div>
+                <div class="title-item" data-title="Auditoria Interna iha Instituisaun Públiku">Auditoria Interna iha Instituisaun Públiku</div>
+                <div class="title-item" data-title="Jestaun Risku Finanseiru iha Banku Komersiál">Jestaun Risku Finanseiru iha Banku Komersiál</div>
+                <div class="title-item" data-title="Analiza Kustu-Benefísiu Projetu Infraestrutura">Analiza Kustu-Benefísiu Projetu Infraestrutura</div>
+                <div class="title-item" data-title="Aplikasaun Software Kontabilidade iha SME">Aplikasaun Software Kontabilidade iha SME</div>
+                <div class="title-item" data-title="Efetividade Jestaun Kreditu iha Banku TL">Efetividade Jestaun Kreditu iha Banku TL</div>
+                <div class="title-item" data-title="Analiza Performance Fundu Soberanu Timor-Leste">Analiza Performance Fundu Soberanu Timor-Leste</div>
+            </div>
+            
+            <div class="delivery-date">
+                <h4>Hira loron ita boot hakarak simu relatóriu?</h4>
+                <div class="date-options">
+                    <div class="date-option" data-days="3">
+                        <input type="radio" name="delivery-date" id="date3" checked>
+                        <label for="date3">Loron 3 (Normal) - La iha taxa</label>
+                    </div>
+                    <div class="date-option" data-days="2">
+                        <input type="radio" name="delivery-date" id="date2">
+                        <label for="date2">Loron 2 (Urjente) + $10</label>
+                    </div>
+                    <div class="date-option" data-days="1">
+                        <input type="radio" name="delivery-date" id="date1">
+                        <label for="date1">Loron 1 (Mai Urjente) + $20</label>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="confirmSelection" class="btn" disabled>Konfirma & Mensa via WhatsApp</button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Title Selection System
+        const modal = document.getElementById('titleModal');
+        const modalType = document.getElementById('modalType');
+        const modalPrice = document.getElementById('modalPrice');
+        const confirmBtn = document.getElementById('confirmSelection');
+        const closeModal = document.querySelector('.close-modal');
+        
+        let currentType = '';
+        let currentPrice = 0;
+        let selectedTitle = '';
+        let selectedDays = 3;
+        let deliveryFee = 0;
+        
+        // Open modal when Order button clicked
+        document.querySelectorAll('.select-title').forEach(btn => {
+            btn.addEventListener('click', function() {
+                currentType = this.getAttribute('data-type');
+                currentPrice = this.getAttribute('data-price');
+                
+                modalType.textContent = currentType;
+                modalPrice.textContent = currentPrice;
+                modal.style.display = 'flex';
+                
+                // Reset selection
+                selectedTitle = '';
+                selectedDays = 3;
+                deliveryFee = 0;
+                document.querySelectorAll('.title-item').forEach(item => {
+                    item.classList.remove('selected');
+                });
+                document.getElementById('date3').checked = true;
+                confirmBtn.disabled = true;
+            });
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Select title
+        document.querySelectorAll('.title-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.title-item').forEach(i => {
+                    i.classList.remove('selected');
+                });
+                this.classList.add('selected');
+                selectedTitle = this.getAttribute('data-title');
+                confirmBtn.disabled = false;
+            });
+        });
+        
+        // Select delivery date
+        document.querySelectorAll('.date-option').forEach(option => {
+            option.addEventListener('click', function() {
+                selectedDays = parseInt(this.getAttribute('data-days'));
+                deliveryFee = selectedDays === 2 ? 10 : selectedDays === 1 ? 20 : 0;
+                document.getElementById('modalPrice').textContent = parseInt(currentPrice) + deliveryFee;
+            });
+        });
+        
+        // Confirm and send via WhatsApp
+        confirmBtn.addEventListener('click', () => {
+            if (selectedTitle) {
+                const totalPrice = parseInt(currentPrice) + deliveryFee;
+                const deliveryDate = new Date();
+                deliveryDate.setDate(deliveryDate.getDate() + selectedDays);
+                
+                const formattedDate = deliveryDate.toLocaleDateString('pt-TL', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+
+                const whatsappMessage = `*PAP Solutions - Order*%0A%0A` +
+                                      `*Naran:* [HATAMA ITA-BOOT NIA NARAN]%0A` +
+                                      `*Tipo Servisu:* ${currentType}%0A` +
+                                      `*Judú:* ${selectedTitle}%0A` +
+                                      `*Preçu Báziku:* $${currentPrice}%0A` +
+                                      `*Taxa Urjente:* $${deliveryFee}%0A` +
+                                      `*Total Pagamentu:* $${totalPrice}%0A` +
+                                      `*Data Entrega:* ${formattedDate}%0A%0A` +
+                                      `Ita boot hakarak atu kontinua ho order ne'e?`;
+                
+                window.open(`https://wa.me/67075468992?text=${whatsappMessage}`, '_blank');
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
